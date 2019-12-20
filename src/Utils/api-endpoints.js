@@ -1,6 +1,6 @@
-const environment = 'local';
+const environment = 'production';
 const localApi = 'http://localhost:4500/api/';
-const productionApi = 'https://mcga-server-todo.herokuapp.com/api/';
+const productionApi = 'https://app-mcg-client.herokuapp.com/login';
 const getApi = () => { return (environment === 'local') ? localApi : productionApi};
 
 const loginApi = getApi()+'auth/login';
