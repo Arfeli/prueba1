@@ -90,7 +90,23 @@ const recoverTodo = (todoId) => {
         });
 };
 
+const create = (todoThing) => {
+    let user = JSON.parse(localStorage.getItem('user'));
+    const Authorization = `Bearer ${user.token}`;
 
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': Authorization },
+        body: JSON.stringify(todoThing)
+    };
+    const url = getApi()+'users/'+user.id+'/todo';
+    return fetch(url, requestOptions)
+        .then(handleResponse)
+        .then(data => {
+            console.log(data)
+            return data;
+        });
+};
 
 
 
@@ -108,6 +124,7 @@ const handleResponse = (response) => {
             return Promise.reject(error);
         }
 
+        console.log(res);
         return res.data;
     })
 };
@@ -118,5 +135,6 @@ export const todoService = {
     removeTodoId,
     finishTodoId,
     recoverTodo,
-    finishEdition
+    finishEdition,
+    create
 };

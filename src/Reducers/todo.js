@@ -9,7 +9,7 @@ export function thingsTodo(state = {}, action) {
             };
         case todoConstants.CREATE_TODO:
             return {
-                response: action.todo
+                itemList: state.itemList.push(action.todo)
             };
         case todoConstants.EDIT_TODO:
             return {
@@ -47,6 +47,9 @@ export function thingsTodo(state = {}, action) {
                     return item;
                 }),
             };
+            break;
+
+
 
         default:
             return state

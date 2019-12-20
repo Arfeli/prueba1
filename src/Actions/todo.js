@@ -6,12 +6,13 @@ import {thingsTodo} from "../Reducers/todo";
 
 
 export const todoActions = {
-    create,
+
     getTodoList,
     removeTodo,
     finishTodo,
     recoverTodo,
-    finishEdition
+    finishEdition,
+    createTodo
 
 };
 
@@ -103,12 +104,13 @@ function recoverTodo(todoId) {
 
 
 
-function create(todo) {
+function createTodo(todoThing) {
+
     return (dispatch) => {
-        todoService.create(todo)
+        todoService.create(todoThing)
             .then(
-                todo => {
-                    dispatch(success(todo));
+                todoThing => {
+                    dispatch(success(todoThing));
                 },
                 error => {
                     dispatch(failure(error));
@@ -117,6 +119,6 @@ function create(todo) {
             );
     };
 
-    function success(todo) { return { type: todoConstants.CREATE_TODO, todo } }
+    function success(todo) { return { type: todoConstants.CREATE_TODO, todoThing } }
     function failure(error) { return { type: todoConstants.TODO_FAILURE, error } }
 }
